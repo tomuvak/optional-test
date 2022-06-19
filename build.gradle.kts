@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform") version "1.7.0"
 }
@@ -5,8 +7,19 @@ plugins {
 group = "com.tomuvak.optional-test"
 version = "0.0.1-SNAPSHOT"
 
+val localProperties = Properties()
+project.rootProject.file("local.properties").takeIf { it.canRead() }?.inputStream()?.let(localProperties::load)
+fun local(key: String): String? = localProperties.getProperty(key)
+
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/tomuvak/optional")
+        credentials {
+            username = local("githubUser")
+            password = local("githubToken")
+        }
+    }
 }
 
 kotlin {
@@ -39,6 +52,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("com.tomuvak.optional:optional:0.0.1")
             }
         }
         val commonTest by getting {
