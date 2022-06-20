@@ -62,7 +62,7 @@ a token's scope after its creation, so it's possible that at some future point t
 token which was meant to be restricted more rights).
 
 See this library's own [build.gradle.kts](build.gradle.kts) (and specifically
-[commit 3814d56](https://github.com/tomuvak/optional-test/commit/3814d56)) for an example of one way this could be done,
+[commit 0a7d166](https://github.com/tomuvak/optional-test/commit/0a7d166)) for an example of one way this could be done,
 by means of storing private information in a local file which is not source-controlled; in this specific case the file
 is named `local.properties` and the commit mentioned above was accompanied by its creation, with two lines of contents:
 
