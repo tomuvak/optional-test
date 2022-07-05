@@ -9,9 +9,13 @@ import kotlin.test.assertFailsWith
 class TestUtilTest {
     @Test fun assertingNoneSucceedsOnNone() = assertNone(None)
     @Test fun assertingNoneFailsOnValue() = thenFails { assertNone(Value(Unit)) }
+    @Test fun assertingNoneFailsOnValueOfNone() = thenFails { assertNone(Value(None)) }
+    @Test fun assertingNoneFailsOnValueOfNull() = thenFails { assertNone(Value(null)) }
 
     @Test fun assertingValueFailsOnNone() = thenFails { assertValue(None) }
     @Test fun assertingValueSucceedsOnValue() = assertValue(Value(Unit))
+    @Test fun assertingValueSucceedsOnValueOfNone() = assertValue(Value(None))
+    @Test fun assertingValueSucceedsOnValueOfNull() = assertValue(Value(null))
 
     @Test fun assertingPredicateOnValueFailsOnNone() {
         var numInvocations = 0
@@ -29,8 +33,16 @@ class TestUtilTest {
     }
 
     @Test fun assertingExactValueFailsOnNone() = thenFails { assertValue(3, None) }
-    @Test fun assertingExactValueFailsOnWrongValue() = thenFails { assertValue(3, Value(4)) }
-    @Test fun assertingExactValueSucceedsOnRightValue() = assertValue(3, Value(3))
+    @Test fun assertingExactValueFailsOnWrongValue() {
+        thenFails { assertValue(3, Value(4)) }
+        thenFails { assertValue(null, Value(None)) }
+        thenFails { assertValue(None, Value(null)) }
+    }
+    @Test fun assertingExactValueSucceedsOnRightValue() {
+        assertValue(3, Value(3))
+        assertValue(None, Value(None))
+        assertValue(null, Value(null))
+    }
 
     private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError> { block() } }
 }
