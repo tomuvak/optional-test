@@ -2,9 +2,7 @@ package com.tomuvak.optional.test
 
 import com.tomuvak.optional.Optional.None
 import com.tomuvak.optional.Optional.Value
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
+import kotlin.test.*
 
 class AssertionsTest {
     @Test fun assertingNoneSucceedsOnNone() = assertNone(None)
@@ -20,14 +18,14 @@ class AssertionsTest {
 
     @Test fun assertingPredicateOnValueFailsOnNoneWithoutInvokingPredicate() {
         var numInvocations = 0
-        thenFails { assertValue(None) {
+        thenFailsWith("got None") { assertValue(None) {
             numInvocations++
             error("Should not be invoked")
         } }
         assertEquals(0, numInvocations)
     }
     @Test fun assertingPredicateOnValueFailsWhenValueDoesNotMeetPredicate() =
-        thenFails { assertValue(Value(3)) { false } }
+        thenFailsWith("345") { assertValue(Value(345)) { false } }
     @Test fun assertingPredicateOnValueSucceedsWhenValueMeetsPredicate() = assertValue(Value(3)) {
         assertEquals(3, it)
         true
@@ -46,4 +44,6 @@ class AssertionsTest {
     }
 
     private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError>(block=block) }
+    private fun thenFailsWith(messagePart: String, block: () -> Unit) =
+        assertTrue(assertFailsWith<AssertionError>(block=block).message!!.indexOf(messagePart) != -1)
 }
