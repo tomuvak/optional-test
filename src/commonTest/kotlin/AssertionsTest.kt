@@ -6,7 +6,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-class TestUtilTest {
+class AssertionsTest {
     @Test fun assertingNoneSucceedsOnNone() = assertNone(None)
     @Test fun assertingNoneFailsOnValue() = thenFails { assertNone(Value(Unit)) }
     @Test fun assertingNoneFailsOnValueOfNone() = thenFails { assertNone(Value(None)) }
