@@ -2,6 +2,7 @@ package com.tomuvak.optional.test
 
 import com.tomuvak.optional.Optional.None
 import com.tomuvak.optional.Optional.Value
+import com.tomuvak.testing.assertions.assertFailsWithTypeAndMessageContaining
 import kotlin.test.*
 
 class AssertionsTest {
@@ -45,5 +46,5 @@ class AssertionsTest {
 
     private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError>(block=block) }
     private fun thenFailsWith(messagePart: String, block: () -> Unit) =
-        assertTrue(assertFailsWith<AssertionError>(block=block).message!!.indexOf(messagePart) != -1)
+        assertFailsWithTypeAndMessageContaining<AssertionError>(messagePart, block=block)
 }
