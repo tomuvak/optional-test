@@ -17,7 +17,7 @@ class AssertionsTest {
     @Test fun assertingValueSucceedsOnValueOfNone() = assertValue(Value(None))
     @Test fun assertingValueSucceedsOnValueOfNull() = assertValue(Value(null))
 
-    @Test fun assertingPredicateOnValueFailsOnNone() {
+    @Test fun assertingPredicateOnValueFailsOnNoneWithoutInvokingPredicate() {
         var numInvocations = 0
         thenFails { assertValue(None) {
             numInvocations++
