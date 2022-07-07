@@ -74,5 +74,5 @@ githubToken=<personal access token for the user above, with the `read:packages` 
 ```
 
 [`com.tomuvak.optional.Optional`]: https://github.com/tomuvak/optional-type/blob/main/src/commonMain/kotlin/Optional.kt
-[`com.tomuvak.optional-type`]: https://github.com/tomuval/optional-type
-[`com.tomuvak.optional`]: https://github.com/tomuval/optional
+[`com.tomuvak.optional-type`]: https://github.com/tomuvak/optional-type
+[`com.tomuvak.optional`]: https://github.com/tomuvak/optional
