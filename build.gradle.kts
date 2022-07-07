@@ -15,7 +15,7 @@ fun local(key: String): String? = localProperties.getProperty(key)
 repositories {
     mavenCentral()
     maven {
-        url = uri("https://maven.pkg.github.com/tomuvak/optional")
+        url = uri("https://maven.pkg.github.com/tomuvak/optional-type")
         credentials {
             username = local("githubUser")
             password = local("githubToken")
@@ -53,7 +53,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("com.tomuvak.optional:optional:0.0.1")
+                implementation("com.tomuvak.optional-type:optional-type:0.0.1")
             }
         }
         val commonTest by getting {

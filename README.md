@@ -1,4 +1,4 @@
-# `com.tomuvak.optional-test` – testing utilities for [`com.tomuvak.optional`](https://github.com/tomuvak/optional)
+# `com.tomuvak.optional-test` – testing utilities for [`com.tomuvak.optional.Optional`]
 This library is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License);
 see [LICENSE.txt](LICENSE.txt).
 
@@ -9,8 +9,8 @@ see [LICENSE.txt](LICENSE.txt).
 
 ## Rationale
 This library provides some nice-to-have (and by no means required) testing utilities for working with the `Optional`
-type provided by [`com.tomuvak.optional`](https://github.com/tomuvak/optional). Like `com.tomuvak.optional`, it is also
-written in multi-platform Kotlin.
+type provided by [`com.tomuvak.optional-type`] (and extended in [`com.tomuvak.optional`]). Like those libraries, it is
+also written in multi-platform Kotlin.
 
 `com.tomuvak.optional` itself uses (some of) these utilities in its test suite. Rather than being buried in that
 library's tests, these utilities are provided here publicly so that others who wish to use them could also do that (and
@@ -23,9 +23,11 @@ type.
 ### Including the library in a Kotlin project
 To add the library from
 [GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages), a
-reference to this repository's GitHub Packages
-[Maven repository](https://maven.apache.org/guides/introduction/introduction-to-repositories.html) needs to be added
-inside the `repositories { ... }` block in the project's `build.gradle.kts` file:
+reference to the GitHub Packages
+[Maven repository](https://maven.apache.org/guides/introduction/introduction-to-repositories.html) needs to be added to
+the project's `build.gradle.kts` file. This is possibly already taken care of
+in the likely event that the project already depends on [`com.tomuvak.optional-type`] and/or [`com.tomuvak.optional`],
+but otherwise add something like the following inside the `repositories { ... }` block:
 
 ```kotlin
     maven {
@@ -37,13 +39,13 @@ inside the `repositories { ... }` block in the project's `build.gradle.kts` file
     }
 ```
 
-and the dependency should be declared for the relevant source set(s) inside the relevant `dependencies { ... }` block(s)
-inside the `sourceSet { ... }` block, e.g.
+Then the dependency should be declared for the relevant source set(s) inside the relevant `dependencies { ... }`
+block(s) inside the `sourceSet { ... }` block, e.g.
 
 ```kotlin
         val commonTest by getting {
             dependencies {
-                implementation("com.tomuvak.optional-test:optional-test:0.0.2")
+                implementation("com.tomuvak.optional-test:optional-test:0.0.3")
             }
         }
 ```
@@ -62,18 +64,15 @@ repositories they can access), or all the more so in case the token has a wider 
 a token's scope after its creation, so it's possible that at some future point the user might inadvertently grant a
 token which was meant to be restricted more rights).
 
-See this library's own [build.gradle.kts](build.gradle.kts) (and specifically
-[commit 0a7d166](https://github.com/tomuvak/optional-test/commit/0a7d166)) for an example of one way this could be done,
-by means of storing private information in a local file which is not source-controlled; in this specific case the file
-is named `local.properties` and the commit mentioned above was accompanied by its creation, with two lines of contents:
+See this library's own [build.gradle.kts](build.gradle.kts) for an example of one way this could be done, by means of
+storing private information in a local file which is not source-controlled. In this case the file – which is Git-ignored
+– is called `local.properties`, and it includes lines like the following:
 
 ```properties
 githubUser=<user name>
 githubToken=<personal access token for the user above, with the `read:packages` scope>
 ```
 
-(note that that commit is for including `com.tomuvak.optional`, which is the library this library both depends on – for
-its _main_ source sets – and serves – for that library's _test_ source sets; it is **not** for including _this_ library,
-which is `com.tomuvak.optional-test`, and so the repository, package and artefact names are slightly different, and the
-example seen in the commit is for including the dependency for the `commonMain` source set, while this library is more
-likely to be included as a dependency for the `commonTest` source set).
+[`com.tomuvak.optional.Optional`]: https://github.com/tomuvak/optional-type/blob/main/src/commonMain/kotlin/Optional.kt
+[`com.tomuvak.optional-type`]: https://github.com/tomuval/optional-type
+[`com.tomuvak.optional`]: https://github.com/tomuval/optional
