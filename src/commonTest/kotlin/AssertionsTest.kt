@@ -44,5 +44,5 @@ class AssertionsTest {
         assertValue(null, Value(null))
     }
 
-    private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError> { block() } }
+    private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError>(block=block) }
 }
