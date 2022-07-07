@@ -12,8 +12,9 @@ This library provides some nice-to-have (and by no means required) testing utili
 type provided by [`com.tomuvak.optional`](https://github.com/tomuvak/optional). Like `com.tomuvak.optional`, it is also
 written in multi-platform Kotlin.
 
-`com.tomuvak.optional` itself uses (some of) these in its test suite. These utilities are provided as a separate library
-so that users of `com.tomuvak.optional` who wish to do so could also utilise them.
+`com.tomuvak.optional` itself uses (some of) these utilities in its test suite. Rather than being buried in that
+library's tests, these utilities are provided here publicly so that others who wish to use them could also do that (and
+as a separate library so that it can be included as a dependency only for test source sets).
 
 ## Usage
 Package `com.tomuvak.optional.test` contains several assertion methods specific for use with values of the `Optional`
