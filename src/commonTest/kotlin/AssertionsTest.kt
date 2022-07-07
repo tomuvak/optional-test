@@ -32,11 +32,11 @@ class AssertionsTest {
         true
     }
 
-    @Test fun assertingExactValueFailsOnNone() = thenFails { assertValue(3, None) }
+    @Test fun assertingExactValueFailsOnNone() = thenFailsWith(3, "got None") { assertValue(3, None) }
     @Test fun assertingExactValueFailsOnWrongValue() {
-        thenFails { assertValue(3, Value(4)) }
-        thenFails { assertValue(null, Value(None)) }
-        thenFails { assertValue(None, Value(null)) }
+        thenFailsWith(3, 4) { assertValue(3, Value(4)) }
+        thenFailsWith(null, None) { assertValue(null, Value(None)) }
+        thenFailsWith(None, null) { assertValue(None, Value(null)) }
     }
     @Test fun assertingExactValueSucceedsOnRightValue() {
         assertValue(3, Value(3))
@@ -45,6 +45,6 @@ class AssertionsTest {
     }
 
     private fun thenFails(block: () -> Unit) { assertFailsWith<AssertionError>(block=block) }
-    private fun thenFailsWith(messagePart: String, block: () -> Unit) =
-        assertFailsWithTypeAndMessageContaining<AssertionError>(messagePart, block=block)
+    private fun thenFailsWith(vararg messageParts: Any?, block: () -> Unit) =
+        assertFailsWithTypeAndMessageContaining<AssertionError>(*messageParts, block=block)
 }
