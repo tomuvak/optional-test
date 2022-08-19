@@ -1,4 +1,8 @@
 # `com.tomuvak.optional-test` – testing utilities for [`com.tomuvak.optional.Optional`]
+[![Licence][1]][2]
+[![Latest release version][3]][4]
+[![Build and tests status][5]][6]
+
 This library is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License);
 see [LICENSE.txt](LICENSE.txt).
 
@@ -73,6 +77,12 @@ githubUser=<user name>
 githubToken=<personal access token for the user above, with the `read:packages` scope>
 ```
 
+[1]: https://img.shields.io/github/license/tomuvak/optional-test?label=Licence
+[2]: LICENSE.txt
+[3]: https://img.shields.io/github/v/tag/tomuvak/optional-test?label=Latest%20release
+[4]: https://github.com/tomuvak/optional-test/tags
+[5]: https://github.com/tomuvak/optional-test/actions/workflows/check-on-push.yaml/badge.svg
+[6]: https://github.com/tomuvak/optional-test/actions/workflows/check-on-push.yaml
 [`com.tomuvak.optional.Optional`]: https://github.com/tomuvak/optional-type/blob/main/src/commonMain/kotlin/Optional.kt
 [`com.tomuvak.optional-type`]: https://github.com/tomuvak/optional-type
 [`com.tomuvak.optional`]: https://github.com/tomuvak/optional
