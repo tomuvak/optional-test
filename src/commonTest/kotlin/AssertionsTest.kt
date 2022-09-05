@@ -2,7 +2,7 @@ package com.tomuvak.optional.test
 
 import com.tomuvak.optional.Optional.None
 import com.tomuvak.optional.Optional.Value
-import com.tomuvak.testing.assertions.assertFailsWithTypeAndMessageContaining
+import com.tomuvak.testing.assertFailsWithTypeAndMessageContaining
 import kotlin.test.*
 
 class AssertionsTest {
